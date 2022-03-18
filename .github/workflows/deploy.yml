@@ -33,14 +33,12 @@ jobs:
 
       - name: Build and push. But, like, funnier.
         run: |
-          APP_NAME=postgres-operator
           VERSION=$(git describe --tags --always --dirty)
-          IMAGE_BASE=ghcr.io/finn-no/$APP_NAME
+          IMAGE_BASE=ghcr.io/finn-no/postgres-operator-image
           IMAGE_NAME=$IMAGE_BASE:$VERSION
           LATEST=$IMAGE_BASE:latest
 
-          make docker
-          docker tag registry.opensource.zalan.do/acid/postgres-operator:$VERSION $IMAGE_NAME
+          make IMAGE=$IMAGE_BASE docker
           docker tag $IMAGE_NAME $LATEST
 
           docker push $IMAGE_NAME
