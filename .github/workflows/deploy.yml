@@ -18,6 +18,7 @@ jobs:
         with:
           repository: finn-no/postgres-operator
           ref: 14-patches
+          fetch-depth: 0 # Fetch all branches and, importantly, tags
 
       - name: Get Go or get... well, just get Go
         uses: actions/setup-go@v2
